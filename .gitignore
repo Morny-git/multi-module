@@ -1,0 +1,12 @@
+target
+build
+.project
+.settings
+.classpath
+.idea
+.iml
+logs
+bin
+*.pyc
+*.log
+*.log.wf

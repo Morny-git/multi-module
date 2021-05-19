@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="project" value="data-security" />
+
+    <springProfile name="dev">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger{36} - %msg%n
+                </pattern>
+            </encoder>
+        </appender>
+
+        <appender name="TRACE"
+                  class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>/data/logs/${project}/trace.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>/data/product/log/${project}/trace.log.%d{yyyy-MM-dd}</fileNamePattern>
+            </rollingPolicy>
+            <append>false</append>
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger{36} - %msg%n
+                </pattern>
+            </layout>
+        </appender>
+
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+        <logger name="trace" level="debug" additivity="false">
+            <appender-ref ref="TRACE"/>
+            <!--<appender-ref ref="CONSOLE"/>-->
+        </logger>
+
+    </springProfile>
+
+</configuration>
